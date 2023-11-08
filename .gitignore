@@ -1,6 +1,5 @@
 /server/node_modules
 /client/node_modules
 /server/package-lock.json
-/client/yarn.lockg
-
+/client/yarn.lock
 *.env
