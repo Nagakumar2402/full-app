@@ -1,23 +1,19 @@
 const Express = require("express");
-const connectDB = require("./config/db.js");
+require("dotenv").config();
+
 const app = Express();
 const Cors = require("cors");
-require("dotenv").config({ path: "./config/.env" });
-
+// middlewares
 app.use(Express.json());
-app.use(Express.urlencoded({ extended: true }));
+app.use(Express.urlencoded({ extended: false }));
 app.use(Cors());
 
 //server
 const port = process.env.PORT || 5000;
-const start = async () => {
-  try {
-    await connectDB();
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-start();
+const connectDB = require("./database/config.js");
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+connectDB.open();
